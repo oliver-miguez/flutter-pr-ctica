@@ -1,121 +1,81 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const Opcion1());
-}
-
 class Opcion1 extends StatelessWidget {
   const Opcion1({super.key});
 
-  //Barra superior
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Car Menu',
-      home: Scaffold(
-        appBar: AppBar(title: const Text('Car Menu')),
-        body: const CarMenu(),
-      ),
+    return Scaffold(
+        appBar: AppBar(title: const Text('Calendario')),
+        body: const CardListExample(),
+      backgroundColor: Colors.white,
     );
   }
 }
 
-//Lista de vehiculos para hacer verificar si funciona
-class CarMenu extends StatelessWidget {
-  const CarMenu({super.key});
+class CardListExample extends StatelessWidget {
+  const CardListExample({super.key});
 
-  final List<Map<String, dynamic>> cars = const [
-    {'name': 'Coche 1', 'quantity': 3},
-    {'name': 'Coche 2', 'quantity': 7},
-    {'name': 'Coche 3', 'quantity': 12},
-  ];
-
-  //Crea una lista de widgets de la lista de coches
   @override
   Widget build(BuildContext context) {
-    return ListView( //para una lista scrolleable
-      padding: const EdgeInsets.all(16),
-      children: cars.map((car) { //de la lista de mapas 'cars' a través del .map se extraen sus valores
-        return Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8),
-          child: CarStatusWidget(
-            carName: car['name'],
-            quantity: car['quantity'],
+    final List<String> diasSemana = [
+      'Lunes',
+      'Martes',
+      'Miércoles',
+      'Jueves',
+      'Viernes',
+      'Sábado',
+      'Domingo',
+    ];
+
+    return ListView.builder(
+      itemCount: diasSemana.length,
+      padding: const EdgeInsets.all(8),
+      itemBuilder: (context, index) {
+        return Card(
+          margin: const EdgeInsets.symmetric(vertical: 8),
+          child: Padding(
+            padding: const EdgeInsets.all(12),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  diasSemana[index],
+                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+                Row(
+                  children: const [
+                    Circle(color: Colors.red),
+                    SizedBox(width: 8),
+                    Circle(color: Colors.yellow),
+                    SizedBox(width: 8),
+                    Circle(color: Colors.green),
+                  ],
+                ),
+              ],
+            ),
           ),
         );
-      }).toList(), //transforma los valores en una lista de widgets
+      },
     );
   }
 }
 
-//definir los datos de cada vehiculo
-class CarStatusWidget extends StatelessWidget {
-  final String carName;
-  final int quantity;
+// Widget para un círculo de color
+class Circle extends StatelessWidget {
+  final Color color;
 
-  const CarStatusWidget({
-    super.key,
-    required this.carName,
-    required this.quantity,
-  });
+  const Circle({super.key, required this.color});
 
   @override
   Widget build(BuildContext context) {
-    // Definimos los colores y si mostramos el número dentro del círculo
-    Color redColor = Colors.red;
-    Color yellowColor = Colors.yellow;
-    Color greenColor = Colors.green;
-
-    //evitar que muestre el número de vehiculos en donde corresponda
-    bool showRedNumber = false;
-    bool showYellowNumber = false;
-    bool showGreenNumber = false;
-
-    // Lógica para activar un círculo según quantity
-    if (quantity < 5) {
-      redColor = Colors.red;
-      showRedNumber = true;
-    } else if (quantity < 10) {
-      yellowColor = Colors.yellow[700]!;
-      showYellowNumber = true;
-    } else {
-      greenColor = Colors.green;
-      showGreenNumber = true;
-    }
-
-    Widget circle(Color color, bool showNumber) {
-      return CircleAvatar(
-        radius: 14,
-        backgroundColor: color,
-        child: showNumber
-            ? Text(
-          quantity.toString(),
-          style: const TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-          ),
-        )
-            : null,
-      );
-    }
-
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          carName,
-          style: const TextStyle(fontSize: 18),
-        ),
-        Row(
-          children: [
-            circle(redColor, showRedNumber),
-            const SizedBox(width: 12),
-            circle(yellowColor, showYellowNumber),
-            const SizedBox(width: 12),
-            circle(greenColor, showGreenNumber),
-          ],
-        ),
-      ],
+    return Container(
+      width: 32,
+      height: 32,
+      decoration: BoxDecoration(
+        color: color,
+        shape: BoxShape.circle,
+      ),
     );
   }
 }

@@ -44,7 +44,7 @@ class _LoginPageState extends State<LoginPage> {
   void _login() {
     String usuario = _usuarioController.text;
     String password = _passwordController.text;
-
+    /*
     if (usuario == 'admin' && password == '1234') {
       Navigator.pushReplacement(
         context,
@@ -54,7 +54,7 @@ class _LoginPageState extends State<LoginPage> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Usuario o contraseña incorrectos')),
       );
-    }
+    }*/
   }
 
 
@@ -130,7 +130,7 @@ class _LoginPageState extends State<LoginPage> {
 
             const SizedBox(height: 30),
               ElevatedButton(
-                onPressed: _login,
+                onPressed:(){Navigator.push((context), MaterialPageRoute(builder: (context) => Menu()));}, //_login,
                 child: const Text('Iniciar sesión'),
               ),
             ],
