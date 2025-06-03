@@ -24,6 +24,7 @@ class _ReservaFormularioScreenState extends State<Opcion2> {
     'Domingo': {'car': 1, 'midi': 3, 'max': 3},
   };
 
+  //Guarda los datos que el usuario selecciona
   String? diaSeleccionado;
   String? destinoSeleccionado;
   String? vehiculoSeleccionado;
