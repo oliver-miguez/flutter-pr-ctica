@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:programa/Contracts_Viewer.dart';
-import 'package:programa/LocalPDFViewer.dart';
+import 'package:programa/View/Contracts_Viewer.dart';
+import 'package:programa/View/LocalPDFViewer.dart';
 import 'package:programa/Opcion1.dart';
 import 'package:programa/Opcion2.dart';
-import 'package:programa/Opcion3.dart';
 import 'package:programa/Opcion4.dart';
+
+
 class Menu extends StatelessWidget {
   const Menu({super.key});
   //Rutas de cada opción
