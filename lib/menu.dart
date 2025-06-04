@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:programa/Contracts_Viewer.dart';
+import 'package:programa/LocalPDFViewer.dart';
 import 'package:programa/Opcion1.dart';
 import 'package:programa/Opcion2.dart';
 import 'package:programa/Opcion3.dart';
@@ -17,7 +19,7 @@ class Menu extends StatelessWidget {
         destino = const Opcion2();
         break;
       case 3:
-        destino = const Opcion3();
+        destino = const Contracts_Viewer();
         break;
       case 4:
         destino = const Opcion4();

@@ -8,8 +8,7 @@ plugins {
 android {
     namespace = "com.example.programa"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
-
+    ndkVersion = "29.0.13113456"
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -41,4 +40,7 @@ android {
 
 flutter {
     source = "../.."
+}
+dependencies {
+    implementation("com.tom-roush:pdfbox-android:2.0.27.0")
 }
